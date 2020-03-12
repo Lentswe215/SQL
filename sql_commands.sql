@@ -269,7 +269,8 @@ DELETE from customers WHERE customerID = 2;
 6. Select all unique statuses from the Orders table and get a count of the number of orders for each unique status.
 
 SELECT DISTINCT Status from Orders;
-SELECT COUNT(Status) from Orders;
+SELECT DISTINCT COUNT(*) from Orders WHERE status = 'Not shipped';
+SELECT DISTINCT COUNT(*) from Orders WHERE status = 'shipped';
 
 7.Return the MAXIMUM payment made on the PAYMENTS table.
 
@@ -304,6 +305,20 @@ SELECT SUM("Amount(R)") AS total from Payments;
 SELECT COUNT(*) from Orders WHERE Status = 'shipped';
 
 15. Return the average price of all Products, in Rands and in Dollars (assume the exchange rate is R12 to the Dollar).
+
+SELECT ROUND(AVG("BuyPrice(R)")) AS "Price_Average(Rands)" from Products;
+SELECT ROUND(AVG("BuyPrice(R)")/12) AS "Price_Average(Dollars)" from PRODUCTs;
+
+16. Using INNER JOIN create a query that selects all Payments with Customer information.
+
+SELECT * from Payments
+JOIN Customers ON Payments.CustomerID = Customers.CustomerID;
+
+17. Select all products that have turnable front wheels.
+
+SELECT * from products WHERE Description LIKE '%Turnable front wheels%';
+
+
 
 
 
